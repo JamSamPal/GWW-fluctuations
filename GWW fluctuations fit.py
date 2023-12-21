@@ -9,8 +9,8 @@ Created on Wed Feb 22 18:03:48 2023
 Analysis of fluctuations in the Gross-Witten Wadia matrix model.
 
 We find the correlation function or green's function who's diagonal elements give the density of eigenvalues
-of the matrix model. We subtract off the average density and study the fluctuations about this.
-We are able to find excellent fit with an ansatz derived from instanton-considerations.
+of the matrix model. We subtract off the average density and study the fluctuations about the average.
+We are able to find excellent fit with an ansatz.
 """
 
 import numpy as np
@@ -24,10 +24,11 @@ d = 101 #number of data points
 #generating data in k space
 x = np.linspace(-np.pi/10, np.pi/10, d);
 
-#generating range of 
+#generating range of control parameter, R. The ratio L/R controls the strength of the external potential
+#of the matrix model.
 R = np.linspace(L/8,L/3,d)
 
-#define green's function in k-space. It is made up of the Toeplitz determinant of Bessel functions, iv.
+#Define green's function in k-space. It is made up of the Toeplitz determinant of Bessel functions, iv.
 def g(k,x):
     a = [(iv(i, 2*(x))*2 - iv(i+1, 2*(x))*np.exp(-1j*k) - iv(i-1, 2*(x))*np.exp(1j*k)) for i in range(L-1)]
     m = toeplitz(a)
